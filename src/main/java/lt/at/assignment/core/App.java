@@ -38,11 +38,8 @@ public class App {
 	}
 
 	public void start() {
-		long startTime = System.currentTimeMillis();
 		readFiles();
 		saveResultsToFile();
-		long endTime = System.currentTimeMillis();
-		System.out.println("Elapsed : " + (endTime - startTime) + " ms");
 	}
 
 	// Collects files from TEXT_FILE_FOLDER directory and populates four maps with words
