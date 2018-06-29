@@ -1,4 +1,4 @@
-package lt.at.assigment.input;
+package lt.at.assignment.input;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,10 +7,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class TextFileReader implements Runnable {
 
+	private static final String WORD_SEPARATOR = "\\W+";
+	private static final String ONLY_ALPHABET_PATTERN = "[a-zA-Z]+";
+	private static final String TEXT_FILE_TYPE = ".txt";
 	private final Path path;
 	private final ConcurrentHashMap<String, Integer> groupA_G;
 	private final ConcurrentHashMap<String, Integer> groupH_N;
@@ -35,14 +39,14 @@ public class TextFileReader implements Runnable {
 	}
 
 	private void readFile() {
-		if (path.toFile().getName().endsWith(".txt")) {
+		if (path.toFile().getName().endsWith(TEXT_FILE_TYPE)) {
 			try {
 				BufferedReader br = Files.newBufferedReader(path, StandardCharsets.ISO_8859_1);
 				Stream<String> lines = br.lines().map(str -> str.toLowerCase());
 				Object[] objectArray = lines.toArray();
 				for (Object obj : objectArray) {
 					String line = (String) obj;
-					String[] wordArray = line.split("\\W+");
+					String[] wordArray = line.split(WORD_SEPARATOR);
 					goThroughWordArray(wordArray);
 				}
 				lines.close();
@@ -54,7 +58,9 @@ public class TextFileReader implements Runnable {
 
 	private void goThroughWordArray(String[] wordArray) {
 		for (String word : wordArray) {
-			addWordToGroup(word);
+			if(Pattern.matches(ONLY_ALPHABET_PATTERN, word)) {
+				addWordToGroup(word);
+			}
 		}
 	}
 

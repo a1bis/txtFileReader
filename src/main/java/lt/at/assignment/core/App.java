@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import lt.at.assigment.input.TextFileReader;
-import lt.at.assigment.output.ResulFiletWriter;
+import lt.at.assignment.input.TextFileReader;
+import lt.at.assignment.output.ResulFileWriter;
 
 public class App {
 
@@ -42,7 +42,6 @@ public class App {
 		saveResultsToFile();
 	}
 
-	// Collects files from TEXT_FILE_FOLDER directory and populates four maps with words
 	private void readFiles() {
 		ExecutorService executor = Executors.newFixedThreadPool(10);
 		Path filesDirectory = Paths.get(TEXT_FILE_FOLDER);
@@ -67,10 +66,10 @@ public class App {
 	}
 
 	private void saveResultsToFile() {
-		ResulFiletWriter.writeResult(groupA_G, RESULTS_FOLDER, RESULT_FILE_A_TO_G);
-		ResulFiletWriter.writeResult(groupH_N, RESULTS_FOLDER, RESULT_FILE_H_TO_N);
-		ResulFiletWriter.writeResult(groupO_U, RESULTS_FOLDER, RESULT_FILE_O_TO_U);
-		ResulFiletWriter.writeResult(groupV_Z, RESULTS_FOLDER, RESULT_FILE_V_TO_Z);
+		ResulFileWriter.writeResult(groupA_G, RESULTS_FOLDER, RESULT_FILE_A_TO_G);
+		ResulFileWriter.writeResult(groupH_N, RESULTS_FOLDER, RESULT_FILE_H_TO_N);
+		ResulFileWriter.writeResult(groupO_U, RESULTS_FOLDER, RESULT_FILE_O_TO_U);
+		ResulFileWriter.writeResult(groupV_Z, RESULTS_FOLDER, RESULT_FILE_V_TO_Z);
 	}
 
 }

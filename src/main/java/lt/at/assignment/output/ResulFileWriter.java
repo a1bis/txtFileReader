@@ -1,4 +1,4 @@
-package lt.at.assigment.output;
+package lt.at.assignment.output;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
-public class ResulFiletWriter {
+public class ResulFileWriter {
 
 	public static void writeResult(Map<String, Integer> wordMap, String resultDirectory, String filename) {
 		File filenameResultDirectory = new File(resultDirectory);
